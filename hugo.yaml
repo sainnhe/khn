@@ -1,12 +1,15 @@
 baseURL: https://khn.sainnhe.dev/
 languageCode: en-us
 title: Sainnhe's Kernel Hacking Notes
+copyright: © 2025 Sainnhe Park. Licensed under CC BY-NC-SA 4.0.
 
 enableRobotsTXT: true
 enableGitInfo: true
 enableInlineShortcodes: true
 
 services:
+  rss:
+    limit: 10
   googleAnalytics:
     ID: G-XBP06V5YTZ
 
@@ -32,9 +35,30 @@ menu:
       url: https://github.com/sainnhe/khn
       params:
         icon: github
+  sidebar:
+    - identifier: more
+      name: More
+      params:
+        type: separator
+      weight: 1
+    - identifier: rss
+      name: RSS
+      url: /index.xml
+      weight: 2
+    - identifier: author
+      name: Author
+      url: https://github.com/sainnhe/
+      weight: 3
+    - identifier: license
+      name: License
+      url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+      weight: 4
 
 params:
   displayUpdatedDate: true
+  author:
+    email: i@sainnhe.dev
+    name: Sainnhe Park
   navbar:
     displayTitle: true
     displayLogo: false
