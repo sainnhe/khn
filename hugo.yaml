@@ -67,3 +67,10 @@ params:
       repoId: R_kgDONj5FLg
       category: Comments
       categoryId: DIC_kwDONj5FLs4ClpvG
+      mapping: pathname
+      strict: 0
+      reactionsEnabled: 1
+      emitMetadata: 0
+      inputPosition: top
+      lang: en
+      theme: preferred_color_scheme
