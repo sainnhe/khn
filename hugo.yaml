@@ -34,6 +34,7 @@ menu:
         icon: github
 
 params:
+  displayUpdatedDate: true
   navbar:
     displayTitle: true
     displayLogo: false
@@ -58,4 +59,11 @@ params:
     copy:
       enable: true
       display: hover
-  displayUpdatedDate: true
+  comments:
+    enable: true
+    type: giscus
+    giscus:
+      repo: sainnhe/khn
+      repoId: R_kgDONj5FLg
+      category: Comments
+      categoryId: DIC_kwDONj5FLs4ClpvG
