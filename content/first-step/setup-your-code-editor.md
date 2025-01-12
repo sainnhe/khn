@@ -23,7 +23,7 @@ A language server is a program that provides language-specific features like cod
 
 Both of them will read a file in the root of a project named `compile_commands.json`, which provides clangd and ccls compilation information so they can correctly analyze the source code. We'll talk about how to generate this file later.
 
-Take clangd for example, there will be 3 steps to get it working:
+Take clangd for example, there are 3 steps to get it working:
 
 1. Install clangd on your machine: [Installing clangd](https://clangd.llvm.org/installation#installing-clangd)
 2. Install code editor plug-in: [Editor plugins](https://clangd.llvm.org/installation#editor-plugins)
