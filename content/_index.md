@@ -2,7 +2,7 @@
 title: "Sainnhe's Kernel Hacking Notes"
 comments: true
 breadcrumbs: false
-next: /test
+next: /first-step
 cascade:
   type: docs
 ---
