@@ -13,7 +13,7 @@ Learning kernels is hard, some even said that you shouldn't consider touching th
 
 I don't think so. No one is born an expert, and programmers will always learn and improve themselves in the process of doing projects and solving problems. And I found that the fastest way to improve myself is to read and hack the source code of the top open source projects.
 
-So this book is about how a kernel newbie tries to hack the kernel source code. I want to share what I've found in this process, and hope these notes can provide you some help.
+This book is about how a kernel newbie tries to hack the kernel source code. I want to share what I've found in this process, and hope these notes can provide you some help.
 
 Note that the kernel mentioned here does not specifically refer to the Linux kernel. Instead, I'm trying to hack some production-ready open source kernels. At this moment, this book will talk about both Linux and FreeBSD kernels.
 
