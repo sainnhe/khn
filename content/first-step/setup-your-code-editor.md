@@ -15,7 +15,7 @@ A language server is a program that provides language-specific features like cod
 1. [clangd](https://clangd.llvm.org/): Maintained by [LLVM](https://llvm.org)
 2. [ccls](https://github.com/MaskRay/ccls): Maintained by [Fangrui Song](https://github.com/MaskRay)
 
-Both of them will read a file in the root of a project named `compile_commands.json`, which provides clangd and ccls compilation information so they can correctly analyze the source code.
+Both of them will read a file in the root of a project named `compile_commands.json`, which provides clangd and ccls compilation information so they can correctly analyze the source code. We'll talk about how to generate this file later.
 
 Take clangd for example, there will be 3 steps to get it working:
 
@@ -39,11 +39,10 @@ Additionally, execute `clangd --help` to have a look at all available arguments 
 
 ```sh
 clangd \
-  --clang-tidy \
   --background-index \
-  --completion-style=detailed \
-  --fallback-style=google \
-  --header-insertion=never
+  --header-insertion=never \
+  --clang-tidy \
+  --completion-style=detailed
 ```
 
 Alternatively, if you want to use ccls instead of clangd, follow the instructions on the project's wiki page: [ccls wiki](https://github.com/MaskRay/ccls/wiki)
