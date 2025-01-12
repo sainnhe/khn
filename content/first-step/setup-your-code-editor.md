@@ -8,10 +8,10 @@ sidebar:
   open: true
 ---
 
-We will discuss how to setup a development environment using Vim or VSCode, both need to configure a language server and install a bookmark plug-in.
+In this section, we will discuss how to setup a development environment using Vim or VSCode, both need to configure a language server and install a bookmark plug-in.
 
 {{< callout type="warning" >}}
-The following guide assumes the host is a working Linux environment. If you are a VSCode user and the Linux environment is run in a virtual machine or a container, use may need to use [VSCode Remote Development Suite](https://code.visualstudio.com/docs/remote/remote-overview) to allow VSCode to access the Linux environment.
+The following guide assumes the host is a working Linux operating system. If you are a VSCode user and the Linux operating system runs as a guest in a virtual machine or a container, you may need to install [VSCode Remote Development Suite](https://code.visualstudio.com/docs/remote/remote-overview) to allow VSCode to access the Linux environment.
 {{< /callout >}}
 
 ## Language Server
