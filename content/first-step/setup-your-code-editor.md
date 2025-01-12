@@ -29,9 +29,9 @@ clangd \
   --header-insertion=never
 ```
 
-`--background-index` tells clangd to index project in the background and persist index on disk. This is very important because the kernel's codebase if very large, and it'll take a long time to index, so you generally don't want clangd to recreate index every time you open the project.
+`--background-index` tells clangd to index project in the background and persist index on disk. This is very important because the kernel's codebase is very large, and it'll take a long time to index, so you generally don't want clangd to recreate index every time you open the project.
 
-`--header-insertion=never` tells clangd not to insert header on completion. We need this because clangd will falsely insert unnecessary headers.
+`--header-insertion=never` tells clangd not to insert headers on completion. We need this because clangd will falsely insert unnecessary headers.
 
 The instructions on how to configure editors to use these 2 arguments can be found in [Editor plugins](https://clangd.llvm.org/installation#editor-plugins).
 
@@ -49,16 +49,16 @@ Alternatively, if you want to use ccls instead of clangd, follow the instruction
 
 ## Bookmark
 
-This book will rely on editors' bookmark plug-in to mark mentioned code, so you need to install the bookmark plug-in:
+This book relies on editors' bookmark plug-in to mark mentioned code, so you need to install the bookmark plug-in:
 
 - Vim: [MattesGroeger/vim-bookmarks](https://github.com/MattesGroeger/vim-bookmarks)
 - VSCode: [alefragnani.Bookmarks](https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks)
 
-For Vim users, you need to add `let g:bookmark_save_per_working_dir = 1` to your vimrc, so a file `.vim-bookmarks` will be stored in the current working directory.
+For Vim users, you need to add `let g:bookmark_save_per_working_dir = 1` to your vimrc, so bookmarks will be stored in a file named `.vim-bookmarks` in the current working directory.
 
-For VSCode users, you need to add `"bookmarks.saveBookmarksInProject": true` to your settings.json, so a file `.vscode/bookmarks.json` will be stored in the current working directory.
+For VSCode users, you need to add `"bookmarks.saveBookmarksInProject": true` to your settings.json, so bookmarks will be stored in a file named `.vscode/bookmarks.json` in the current working directory.
 
-Then you can download the bookmark files provided by this book, and put and rename them in the project root, which is the source code of the kernels that we'll obtain later. Then reopen your code editor, and you can see these bookmarks.
+Then you can download the bookmark files used by this book, and put them in the project root, which is the source code of the kernels that we'll obtain later. Then reopen your code editor, and you can see the bookmarks.
 
 The download URLs are listed as follows:
 
