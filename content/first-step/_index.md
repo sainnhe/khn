@@ -5,6 +5,8 @@ breadcrumbs: false
 prev: /
 next: /first-step/setup-your-code-editor/
 weight: 0
+sidebar:
+  open: true
 ---
 
 To get started with the development of a large project, you need to complete at least the following three steps first:

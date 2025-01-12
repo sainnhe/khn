@@ -4,6 +4,8 @@ comments: true
 breadcrumbs: false
 prev: /first-step
 weight: 1
+sidebar:
+  open: true
 ---
 
 We will discuss how to setup a development environment using Vim or VSCode, both need to configure a language server and install a bookmark plug-in.
