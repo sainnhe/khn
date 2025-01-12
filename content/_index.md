@@ -9,7 +9,7 @@ cascade:
 
 ## Introduction
 
-Learning kernels is hard, [some](https://wiki.osdev.org/Beginner_Mistakes) even said that you shouldn't consider touching this area if you haven't had experience of a decade of programming, including a few years of low-level coding in assembly language and/or a systems language such as C.
+Learning kernels is hard, some even said that you shouldn't consider touching this area if you don't have experience of a decade of programming and years of experience in several languages and environments.
 
 I don't think so. No one is born an expert, and programmers will always learn and improve themselves in the process of doing projects and solving problems. And I found that the fastest way to improve myself is to read and hack the source code of the top open source projects.
 
