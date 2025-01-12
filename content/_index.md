@@ -44,10 +44,10 @@ This book assumes you:
 - Can write programs in the C programming language. I'd recommend[《C Primer Plus》](https://www.oreilly.com/library/view/c-primer-plus/9780133432398/)if you haven't learned it yet.
 - Know how to use git. The [official book](https://git-scm.com/book/en/v2) is a good learning resource.
 - Understand the basics of operating systems and networking and know how to perform UNIX system programming. I'd recommend[《The Linux Programming Interface》](https://man7.org/tlpi/)for both learning and reference.
-- Have a working Linux environment, whether it is a virtual machine, dual system, [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) (Windows Subsystem for Linux), cloud server or a container. If you are using macOS, you can use [OrbStack](https://orbstack.dev/) or [Lima](https://github.com/lima-vm/lima) as an alternative to WSL.
+- Have a working Linux environment, whether it is a virtual machine, dual system, [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) (Windows Subsystem for Linux), cloud server or a docker container. If you are using macOS, you can use [OrbStack](https://orbstack.dev/) or [Lima](https://github.com/lima-vm/lima) as an alternative to WSL.
 - Be familiar to UNIX shell commands.[《Harley Hahn's Guide to Unix and Linux》](https://www.harley.com/unix-book/book/chapters/home.html)is a good guide if you haven't learned it systematically.
 
-In this book, I'll use Arch Linux (x86\_64) as development environment. All the operations mentioned in this article are guaranteed to be reproducible on Arch Linux. Note that this does not include Arch Linux derivatives such as Manjaro. If you encounter any problems in the process of reproducing, please feel free to discuss in the comment area.
+In this book, I'll use Arch Linux (x86\_64) as development environment. All the operations mentioned in this article are guaranteed to be reproducible on Arch Linux. Note that this does not include Arch Linux derivatives such as Manjaro and Arch Linux Arm. If you encounter any problems in the process of reproducing, please feel free to discuss in the comment area.
 
 ## Kernel source code versions
 
