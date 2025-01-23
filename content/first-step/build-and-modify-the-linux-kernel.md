@@ -1,5 +1,5 @@
 ---
-title: 'Build and Hack the Linux Kernel'
+title: 'Build and Modify the Linux Kernel'
 comments: true
 breadcrumbs: false
 weight: 2
