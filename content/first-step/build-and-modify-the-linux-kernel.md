@@ -68,23 +68,23 @@ Of course you can use your editor to edit these configuration options, but a bet
 $ make menuconfig
 ```
 
-All the modifications will be saved in `.config`. The next question is how to save your modifications and reproduce it in another machine? One way is directly copying `.config` to another machine, but there is a problem with this approach, that is, if the architecture of another machine is different from the current machine, then the `.config` file may not be applicable to the other machine.
+All the modifications will be saved in `.config`. The next question is how to reproduce your modified config in another machine? One way is directly copying `.config` to another machine, but there is a problem with this approach, that is, if the architecture of another machine is different from the current machine, then the `.config` file may not be applicable to the other machine.
 
-Can we save the differences between the modified config and the default config, and apply the differences in another machine? In this way, the config used in another machine will be based on the default config of another machine's architecture. To do this, type:
+Can we save the differences between the modified config and the default config, and apply the differences in another machine's default config? In this way, the config used in another machine can be based on the default config of another machine's architecture. To do this, type:
 
 ```shell
 $ make savedefconfig
 ```
 
-This command will generate a file `defconfig` which contains minimal configuration that includes only the symbols that differ from the default configuration. Copy this file to another machine and you can reproduce the config by `make defconfig`.
+This command will generate a file `defconfig` in the project root directory which contains minimal configuration that includes only the symbols that differ from the default configuration. Copy this file to another machine and you can reproduce the config by executing `make defconfig`.
 
-What if you pulled from the remote repository and some configuration options have changed? To update `.config` based on current kernel source code, execute:
+Another question is what if you pull from the remote repository and some configuration options have changed? To update `.config` based on current kernel source code, execute:
 
 ```shell
 $ make oldconfig
 ```
 
-Except for configuration targets, there are also some configuration topic targets which can easily enable a feature without having to modify tons of configuration options. For example, to enable KVM (Kernel-based Virtual Machine) guest support:
+`make help` will print not only configuration targets, but also configuration topic targets which can easily enable a feature without having to modify dozens of configuration options. For example, to enable KVM (Kernel-based Virtual Machine) guest support:
 
 ```shell
 $ make kvm_guest.config
@@ -104,7 +104,7 @@ $ make -j$(nproc)
 
 The output kernel image is located in `arch/x86_64/boot/bzImage` in x86\_64 machine and `arch/arm64/boot/Image` in arm64 machine.
 
-The default compiler toolchain used in config file is gcc, but you can also use clang to build the kernel, and all you need to do is simply adding `CC=clang` to make commands. Since I use clangd in my code editor, I'll use clang to build the Linux kernel here. The full commands are listed below:
+The default compiler toolchain used in config file is gcc, but you can also use clang to build the kernel, and all you need to do is simply appending `CC=clang` to `make` commands. Here, since I use clangd in my code editor, I'll use clang to build the Linux kernel to keep the toolchain consistent. The full commands are listed below:
 
 ```shell
 $ make CC=clang defconfig
@@ -112,7 +112,7 @@ $ make CC=clang -j$(nproc)
 $ ./scripts/clang-tools/gen_compile_commands.py
 ```
 
-The last command is used to generate `compile_commands.json`, which provides compilation information for clangd and ccls, as mentioned in previous article. Open your code editor, and clangd / ccls will automatically read this file and parse the project based on it.
+The last command is used to generate `compile_commands.json`, which provides compilation information for clangd and ccls, as mentioned in previous article. When you open your code editor, clangd / ccls will automatically read this file and parse the project based on it.
 
 ### Run the Linux Kernel
 
@@ -132,7 +132,7 @@ Go to the official download page of Alpine Linux: [https://alpinelinux.org/downl
 
 In the "Mini root filesystem" section, find and download the tarball that matches your CPU architecture.
 
-Then in your terminal, switch to root to ensure the permission is correct, and execute the following commands:
+Then in your terminal, switch to the root user to ensure the privilege is correct, and execute the following commands:
 
 ```
 $ su root
@@ -143,7 +143,7 @@ $ su root
 
 Insert the following content to `/init`:
 
-```shell
+```shell {filename="/init"}
 #!/bin/sh
 
 mount -t proc none /proc
@@ -160,7 +160,7 @@ exec /bin/sh
 
 In this script, we mounted 2 virtual file system to `/proc` and `/sys`, brings up the network interface `eth0` and uses udhcpc client to obtain an IP address via DHCP. We also mounted a shared directory to `/mnt/shared` so the guest machine can access shared files from the host machine via this directory.
 
-Save the file and execute:
+Save this file and execute the following commands:
 
 ```
 # chmod +x init
@@ -173,7 +173,7 @@ Save the file and execute:
 
 We first make the init script executable, then we set the DNS resolver to google dns `8.8.8.8`. We also make two character devices for console and null output. Finally, we use `find`, `cpio` and `gzip` to generate a compressed cpio archive containing all the files in the current directory and its subdirectories. This archive is then saved as `initramfs.img` and made readable for all users.
 
-Now, switch to normal user and execute the following command to launch it:
+Now, switch to normal user and execute the following command to launch a virtual machine:
 
 {{< tabs items="x86_64,arm64" >}}
 
@@ -255,7 +255,7 @@ Let's try to install vim in your virtual machine:
 
 ## Modify the Linux Kernel
 
-Now there is only one last thing left, which is to modify at least one line of code and see the effect of the modification. In this section, let's modify the Linux kernel and let it print a "Hello world!" string when the kernel starts.
+Now there is only one last thing left, which is to modify at least one line of code and see the effect of the modification. In this section, we'll modify the Linux kernel and let it print a "Hello world!" string when the kernel starts.
 
 We first need to find out the entry point of the Linux kernel. When we write a C program, we use `main()` function as the entry point. In the Linux kernel however, there is no `main()` function, instead the kernel execution starts with architecture-specific assembly code. For x86\_64, it's `arch/x86/kernel/head_64.S`, and for arm64, it's `arch/arm64/kernel/head.S`.
 
