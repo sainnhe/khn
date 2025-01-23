@@ -54,7 +54,7 @@ In this book, I'll use Arch Linux (x86\_64) as development environment. All the 
 This book will discuss the latest LTS (Long-term support) versions of Linux and FreeBSD at the time of writing. Specifically, the corresponding git tags are as follows:
 
 {{< cards >}}
-  {{< card link="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tag/?h=v6.12.9" title="Linux v6.12.9" icon="tag" >}}
+  {{< card link="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tag/?h=v6.12" title="Linux v6.12" icon="tag" >}}
   {{< card link="https://cgit.freebsd.org/src/tag/?h=release/14.2.0" title="FreeBSD release/14.2.0" icon="tag" >}}
 {{< /cards >}}
 
