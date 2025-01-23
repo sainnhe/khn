@@ -20,7 +20,7 @@ Let's get started.
 
 #### Get the Source Code
 
-The very first question on how to build the linux kernel is where to get the source code. If you google it, you may find a GitHub repository: [https://github.com/torvalds/linux](https://github.com/torvalds/linux)
+The very first question on how to build the Linux kernel is where to get the source code. If you google it, you may find a GitHub repository: [https://github.com/torvalds/linux](https://github.com/torvalds/linux)
 
 However this is simply a mirror of another upstream repository hosted on kernel.org, whose URL is [https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git)
 
@@ -32,7 +32,7 @@ So what will happen if there are new bugs or security flaws found in a stable re
 
 Each stable release will receive bugfix and security updates for a period of time in stable repository, usually until the next stable release is available. However, if a stable release becomes a LTS (Long-term Support) release, it'll receive longer support, generally for several years.
 
-Releases in stable repository is considered stable enough for use in production, so most of the Linux distros choose to package linux kernel from the stable repository, leaving mainline repository for development purpose.
+Releases in stable repository is considered stable enough for use in production, so most of the Linux distros choose to package Linux kernel from the stable repository, leaving mainline repository for development purpose.
 
 In this book, we'll focus on the latest LTS release at the time of writing, i.e. `v6.12`. This tag exists in both mainline repository and stable repository, so you can clone one of them and checkout this tag. You may notice that there are many bugfix releases of v6.12 in stable repository, but since bugfixes are not our focus, we mainly focus on the mainline stable release v6.12. If you are curious about these bugfixes, you can use git diff to compare and see the differences between various bugfix releases.
 
@@ -104,7 +104,7 @@ $ make -j$(nproc)
 
 The output kernel image is located in `arch/x86_64/boot/bzImage` in x86\_64 machine and `arch/arm64/boot/Image` in arm64 machine.
 
-The default compiler toolchain used in config file is gcc, but you can also use clang to build the kernel, and all you need to do is simply adding `CC=clang` to make commands. Since I use clangd in my code editor, I'll use clang to build the linux kernel here. The full commands are listed below:
+The default compiler toolchain used in config file is gcc, but you can also use clang to build the kernel, and all you need to do is simply adding `CC=clang` to make commands. Since I use clangd in my code editor, I'll use clang to build the Linux kernel here. The full commands are listed below:
 
 ```shell
 $ make CC=clang defconfig
@@ -255,7 +255,44 @@ Let's try to install vim in your virtual machine:
 
 ## Modify the Linux Kernel
 
-Now there is only one last thing left, which is to modify at least one line of code and see the effect of the modification.
+Now there is only one last thing left, which is to modify at least one line of code and see the effect of the modification. In this section, let's modify the Linux kernel and let it print a "Hello world!" string when the kernel starts.
+
+We first need to find out the entry point of the Linux kernel. When we write a C program, we use `main()` function as the entry point. In the Linux kernel however, there is no `main()` function, instead the kernel execution starts with architecture-specific assembly code. For x86\_64, it's `arch/x86/kernel/head_64.S`, and for arm64, it's `arch/arm64/kernel/head.S`.
+
+This assembly code handles very low-level tasks. It first sets up the CPU, then initializes a minimal stack, and prepares the environment for C code to run. Once the assembly code completes its job, it jumps to the `start_kernel()` function in `init/main.c`. This is where the "generic" kernel initialization begins in C.
+
+Why no `main()` function in the Linux kernel? Remember that the kernel is not a userspace program and does not rely on the standard C runtime (which typically provides `main()`). This also means *you cannot use standard libraries* in the kernel source code, like `printf()` in `<stdio.h>` and `strcpy()` in `<string.h>`.
+
+But don't be afraid, although we cannot use standard libraries, the kernel implements a set of libraries that can be used to replace most of the functions in standard libraries. For example, for `printf()` we have `printk()` defined in `<linux/printk.h>`, and for `strcpy()` we have `strscpy()` defined in `<linux/string.h>`.
+
+We can use `printk()` like this:
+
+```c
+printk(KERN_INFO "Hello world! Value: %d\n", 42);
+```
+
+Where `KERN_INFO` is the log level defined in `<linux/kern_levels.h>`.
+
+`<linux/printk.h>` also defines some simple wrappers for `printk()`, for example the above code is equivalent to `pr_info("Hello world! Value: %d\n", 42)`. `pr_info()` is a macro that wraps `printk(KERN_INFO ...)`.
+
+Now let's come back to our question. How to print a "Hello world!" string when the kernel starts? Through the above analysis we know that we can modify the `start_kernel()` function in `init/main.c` and add a line that uses `printk()` or its wrappers to print a string.
+
+An example implementation is as follows. You can use `git apply` to apply the patch, then re-execute `make` to compile the kernel, and then use qemu to start the kernel to see the effect.
+
+```diff {filename="patch.diff"}
+diff --git a/init/main.c b/init/main.c
+index c4778edae797..bbc6a44ed5bd 100644
+--- a/init/main.c
++++ b/init/main.c
+@@ -936,6 +936,7 @@ void start_kernel(void)
+ 	boot_cpu_hotplug_init();
+ 
+ 	pr_notice("Kernel command line: %s\n", saved_command_line);
++	pr_notice("Hello world!\n");
+ 	/* parameters may set static keys */
+ 	parse_early_param();
+ 	after_dashes = parse_args("Booting kernel",
+```
 
 ## More Resources
 
