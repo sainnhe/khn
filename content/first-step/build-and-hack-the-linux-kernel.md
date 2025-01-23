@@ -96,13 +96,13 @@ After generating the configuration file, you can use the following command to co
 $ make -j4
 ```
 
-The output kernel image is located in `arch/x86_64/boot/bzImage` in x86_64 machine and `arch/arm64/boot/Image` in arm64 machine.
-
 The `-j4` option tells `make` to run 4 jobs simultaneously. If you omit this option, `make` will only run 1 job, which may not maximize your CPU utilization. If you want to use the exact CPU core number on your machine as the job number, you can use `$(nproc)` to get the number of logical cores:
 
 ```shell
 $ make -j$(nproc)
 ```
+
+The output kernel image is located in `arch/x86_64/boot/bzImage` in x86\_64 machine and `arch/arm64/boot/Image` in arm64 machine.
 
 The default compiler toolchain used in config file is gcc, but you can also use clang to build the kernel, and all you need to do is simply adding `CC=clang` to make commands. Since I use clangd in my code editor, I'll use clang to build the linux kernel here. The full commands are listed below:
 
@@ -135,6 +135,7 @@ In the "Mini root filesystem" section, find and download the tarball that matche
 Then in your terminal, switch to root to ensure the permission is correct, and execute the following commands:
 
 ```
+$ su root
 # mkdir rootfs && cd rootfs
 # tar xvf /path/to/alpine-minirootfs-<version>-<arch>.tar.gz
 # vim init
@@ -156,8 +157,6 @@ mount -t 9p -o trans=virtio shared_mount /mnt/shared
 
 exec /bin/sh
 ```
-
-`/init` is the launch script, we can define commands to be executed after the kernel boots.
 
 In this script, we mounted 2 virtual file system to `/proc` and `/sys`, brings up the network interface `eth0` and uses udhcpc client to obtain an IP address via DHCP. We also mounted a shared directory to `/mnt/shared` so the guest machine can access shared files from the host machine via this directory.
 
@@ -181,7 +180,7 @@ Now, switch to normal user and execute the following command to launch it:
   {{< tab >}}
 
   ```shell
-  $ mkdir share
+  $ mkdir shared
   $ qemu-system-x86_64 \
       -kernel /path/to/linux/arch/x86_64/boot/bzImage \
       -initrd /path/to/initramfs.img \
@@ -190,16 +189,29 @@ Now, switch to normal user and execute the following command to launch it:
       -m 500M \
       -netdev user,id=net0 \
       -device e1000,netdev=net0 \
-      -fsdev local,id=shared_dir,path=./share,security_model=none \
+      -fsdev local,id=shared_dir,path=./shared,security_model=none \
       -device virtio-9p-pci,fsdev=shared_dir,mount_tag=shared_mount
   ```
+
+  In these commands:
+
+  - We first create a directory named `shared`. This directory will be mounted in the guest virtual machine so the host machine can share files with the guest via this directory.
+  - `-kernel` specifies the path of the kernel image.
+  - `-initrd` specifies the path of the initial RAM filesystem (initramfs) image.
+  - `-append "console=ttyS0"` appends a parameter to the kernel. Here, `console=ttyS0` directs the kernel's console output to the first serial port (ttyS0).
+  - `-nographic` tells QEMU to run without a graphical window. Instead, it redirects the virtual machine's graphics output to the terminal.
+  - `-m 500M` sets the amount of memory allocated to the virtual machine.
+  - `-netdev user,id=net0` configures a user-mode network stack for the virtual machine. It creates a virtual network device (net0) that allows the VM to communicate with the host and external networks through NAT (Network Address Translation).
+  - `-device e1000,netdev=net0` attaches an Intel e1000 network adapter to the virtual machine and connects it to the previously defined network device (net0). This enables networking within the VM.
+  - `-fsdev local,id=shared_dir,path=./shared,security_model=none` sets up a file system device that allows sharing a directory from the host machine to the guest virtual machine. Here, it shares the `./shared` directory on the host with the guest.
+  - `-device virtio-9p-pci,fsdev=shared_dir,mount_tag=shared_mount` attaches a virtio 9p file system device to the virtual machine, linking it to the previously defined file system device (shared\_dir).
 
   {{< /tab >}}
 
   {{< tab >}}
 
   ```shell
-  $ mkdir share
+  $ mkdir shared
   $ qemu-system-aarch64 \
       -M virt \
       -cpu cortex-a57 \
@@ -209,15 +221,29 @@ Now, switch to normal user and execute the following command to launch it:
       -m 500M \
       -netdev user,id=net0 \
       -device e1000,netdev=net0 \
-      -fsdev local,id=shared_dir,path=./share,security_model=none \
+      -fsdev local,id=shared_dir,path=./shared,security_model=none \
       -device virtio-9p-pci,fsdev=shared_dir,mount_tag=shared_mount
   ```
+
+  In these commands:
+
+  - We first create a directory named `shared`. This directory will be mounted in the guest virtual machine so the host machine can share files with the guest via this directory.
+  - `-M virt` specifies the machine type for the virtual machine. "virt" refers to a generic, versatile platform that is commonly used for testing and development purposes on ARM architectures.
+  - `-cpu cortex-a57` sets the CPU type for the virtual machine to Cortex-A57.
+  - `-kernel` specifies the path of the kernel image.
+  - `-initrd` specifies the path of the initial RAM filesystem (initramfs) image.
+  - `-serial stdio` redirects the serial console output to the standard input/output of the terminal where QEMU is run, so we can interact with the virtual machine's console directly from the terminal.
+  - `-m 500M` sets the amount of memory allocated to the virtual machine.
+  - `-netdev user,id=net0` configures a user-mode network stack for the virtual machine. It creates a virtual network device (net0) that allows the VM to communicate with the host and external networks through NAT (Network Address Translation).
+  - `-device e1000,netdev=net0` attaches an Intel e1000 network adapter to the virtual machine and connects it to the previously defined network device (net0). This enables networking within the VM.
+  - `-fsdev local,id=shared_dir,path=./shared,security_model=none` sets up a file system device that allows sharing a directory from the host machine to the guest virtual machine. Here, it shares the `./shared` directory on the host with the guest.
+  - `-device virtio-9p-pci,fsdev=shared_dir,mount_tag=shared_mount` attaches a virtio 9p file system device to the virtual machine, linking it to the previously defined file system device (shared\_dir).
 
   {{< /tab >}}
 
 {{< /tabs >}}
 
-If you compiled the kernel with KVM guest supported, you can append `-enable-kvm` to enable KVM.
+If you compiled the kernel with KVM guest supported, you can also append `-enable-kvm` to enable KVM.
 
 Now you successfully boot a virtual machine with the kernel compiled by yourself, and has access to the Internet and can share files with host machine.
 
