@@ -9,9 +9,9 @@ cascade:
 
 ## Introduction
 
-Learning kernels is hard, some even said that you shouldn't consider touching this area if you don't have experience of a decade of programming and years of experience in several languages and environments.
+Learning kernels is hard, some even said that you shouldn't consider touching this area if you don't have experience of a decade of programming.
 
-I don't think so. No one is born an expert, and programmers will always learn and improve themselves in the process of doing projects and solving problems. And I found that the fastest way to improve myself is to read and hack the source code of the top open source projects.
+I don't think so. Programming experience should not be a barrier that prevents kernel enthusiasts from exploring this area, because developers will always learn and improve themselves in the process of doing projects and solving problems. And I found that the fastest way to improve myself is to read and hack the source code of the top open source projects.
 
 This book is about how a kernel newbie tries to hack the kernel source code. I want to share what I've found in this process, and hope these notes can provide you some help.
 
@@ -23,7 +23,13 @@ You may wonder why to hack FreeBSD kernel, since Linux has already became a indu
 
 This book focuses on hands-on, which means that if you just read it without practice, you may not even understand what I'm saying.
 
-And given the hands-on feature, this book will use a very different approach to discuss problems. This book will use editors' bookmark plug-ins to mark the code mentioned in the book. You can search the name of the bookmark to quickly jump to a specific location. Currently, Vim and VSCode is supported.
+And given the hands-on feature, this book will use a very different approach to discuss problems. This book will use code editors' bookmark plug-ins to mark the code mentioned in the book. You can search for the name of the bookmark in your code editor to quickly jump to the specified code position. Currently, Vim and VSCode is supported.
+
+Each bookmark in this book will have a hyperlink pointing to the corresponding code snippet, so for non-Vim and VSCode users, you can also click on the link to view the mentioned code snippet. Besides, bookmarks adhere to the following naming convention:
+
+[{{< icon "bookmark" >}} [\<kernel\>] \<annotation\>](https://www.example.com)
+
+Where \<kernel\> is one of "linux" and "freebsd", and \<annotation\> is the string you should search for in your code editor's bookmark plug-in. For example, [{{< icon "bookmark" >}} [freebsd] ch1: README](https://github.com/freebsd/freebsd-src/blob/release/14.2.0/README.md) means this bookmark is used to mark the code snippet in FreeBSD, and you should search for "ch1: README" in your code editor's bookmark plug-in.
 
 In addition, since most modern editors support the function of jumping to definitions and references, when reading the code, you should try to jump to its definitions and references to understand how the corresponding interfaces are implemented and used.
 
@@ -44,8 +50,9 @@ This book assumes you:
 - Can write programs in the C programming language. I'd recommend[《C Primer Plus》](https://www.oreilly.com/library/view/c-primer-plus/9780133432398/)if you haven't learned it yet.
 - Know how to use git. The [official book](https://git-scm.com/book/en/v2) is a good learning resource.
 - Understand the basics of operating systems and networking and know how to perform UNIX system programming. I'd recommend[《The Linux Programming Interface》](https://man7.org/tlpi/)for both learning and reference.
-- Have a working Linux environment, whether it is a virtual machine, dual system, [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) (Windows Subsystem for Linux), cloud server or a docker container. If you are using macOS, you can use [OrbStack](https://orbstack.dev/) or [Lima](https://github.com/lima-vm/lima) as an alternative to WSL.
 - Be familiar to UNIX shell commands.[《Harley Hahn's Guide to Unix and Linux》](https://www.harley.com/unix-book/book/chapters/home.html)is a good guide if you haven't learned it systematically.
+- Have a working Linux environment, whether it is a virtual machine, dual system, [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) (Windows Subsystem for Linux), cloud server or a docker container. If you are using macOS, you can use [OrbStack](https://orbstack.dev/) or [Lima](https://github.com/lima-vm/lima) as an alternative to WSL.
+- Have a working [FreeBSD 14.2.0](https://www.freebsd.org/where/) virtual machine, and a backup copy of this VM. We'll directly build and install the FreeBSD kernel in a VM, so make sure you have a backup of it.
 
 In this book, I'll use Arch Linux (x86\_64) as development environment. All the operations mentioned in this article are guaranteed to be reproducible on Arch Linux. Note that this does not include Arch Linux derivatives such as Manjaro and Arch Linux Arm. If you encounter any problems in the process of reproducing, please feel free to discuss in the comment area.
 
