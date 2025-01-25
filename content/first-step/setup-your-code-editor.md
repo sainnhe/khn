@@ -12,6 +12,8 @@ In this section, we will discuss how to setup a development environment using Vi
 
 {{< callout type="warning" >}}
 The following guide assumes the host is a working Linux operating system. If you are a VSCode user and the Linux operating system runs as a guest in a virtual machine or a container, you may need to install [VSCode Remote Development Suite](https://code.visualstudio.com/docs/remote/remote-overview) to allow VSCode to access the Linux environment.
+
+Since VSCode's Remote SSH Extension doesn't officially support FreeBSD, you need some extra tricks to get it working. You can refer to [this gist](https://gist.github.com/mateuszkwiatkowski/ce486d692b4cb18afc2c8c68dcfe8602) to do this.
 {{< /callout >}}
 
 ## Language Server
