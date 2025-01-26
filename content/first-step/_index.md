@@ -3,7 +3,7 @@ title: 'First Step'
 comments: true
 breadcrumbs: false
 prev: /
-next: /first-step/setup-your-code-editor/
+next: /first-step/set-up-your-code-editor/
 weight: 0
 sidebar:
   open: true
@@ -11,7 +11,7 @@ sidebar:
 
 To get started with the development of a large project, you need to complete at least the following three steps first:
 
-1. Setup your development environment, including code completion, code linting, etc.
+1. Set up your development environment, including code completion, code linting, etc.
 2. Build and run the project locally.
 3. Modify at least one line of code and see the effect of the modification.
 

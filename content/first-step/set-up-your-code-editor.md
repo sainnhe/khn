@@ -1,5 +1,5 @@
 ---
-title: 'Setup Your Code Editor'
+title: 'Set Up Your Code Editor'
 comments: true
 breadcrumbs: false
 prev: /first-step
@@ -8,7 +8,7 @@ sidebar:
   open: true
 ---
 
-In this section, we will discuss how to setup a development environment using Vim or VSCode, both need to configure a language server and install a bookmark plug-in.
+In this section, we will discuss how to set up a development environment using Vim or VSCode, both need to configure a language server and install a bookmark plug-in.
 
 > [!IMPORTANT]
 > If you are using VSCode in a host machine and running a Linux distro or FreeBSD in a VM or a container, you may need to set up [VSCode Remote Development Suite](https://code.visualstudio.com/docs/remote/remote-overview) to allow VSCode to access the development environment via SSH.

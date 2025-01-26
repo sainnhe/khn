@@ -7,7 +7,7 @@ sidebar:
   open: true
 ---
 
-Now that we have completed the first thing mentioned in the [First Step](/first-step), which is setup your development environment. There are two more things to do:
+Now that we have completed the first thing mentioned in the [First Step](/first-step), which is setting up your development environment. There are two more things to do:
 
 1. Build and run the kernel.
 2. Modify at least one line of code and see the effect of the modification.
