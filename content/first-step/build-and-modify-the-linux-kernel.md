@@ -16,9 +16,7 @@ Let's get started.
 
 ## Build and Run the Linux Kernel
 
-### Build the Linux Kernel
-
-#### Get the Source Code
+### Get the Source Code
 
 The very first question on how to build the Linux kernel is where to get the source code. If you google it, you may find a GitHub repository: [https://github.com/torvalds/linux](https://github.com/torvalds/linux)
 
@@ -42,7 +40,7 @@ $ cd linux
 $ git checkout v6.12
 ```
 
-#### Build the Kernel
+### Build the Linux Kernel
 
 > [!NOTE]
 > You may need to install some packages to build the kernel. If you are using Arch Linux and some commands are missing, you can use `pacman -F` to search for corresponding package that contains the given binary. For users of other Linux distros, you can find the package name of a missing command in [command-not-found.com](https://command-not-found.com/).
