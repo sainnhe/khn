@@ -29,7 +29,7 @@ Each bookmark in this book will have a hyperlink pointing to the corresponding c
 
 [{{< icon "bookmark" >}} [\<kernel\>] \<annotation\>](https://www.example.com)
 
-Where \<kernel\> is one of "linux" and "freebsd", and \<annotation\> is the string you should search for in your code editor's bookmark plug-in. For example, [{{< icon "bookmark" >}} [freebsd] ch1: README](https://github.com/freebsd/freebsd-src/blob/release/14.2.0/README.md#L1) means this bookmark is used to mark the code snippet in FreeBSD, and you should search for "ch1: README" in your code editor's bookmark plug-in.
+Where \<kernel\> is one of "linux" or "freebsd", and \<annotation\> is the string you should search for in your code editor's bookmark plug-in. For example, [{{< icon "bookmark" >}} [freebsd] ch1: README](https://github.com/freebsd/freebsd-src/blob/release/14.2.0/README.md#L1) means this bookmark is used to mark the code snippet in FreeBSD, and you should search for "ch1: README" in your code editor's bookmark plug-in.
 
 In addition, since most modern editors support the function of jumping to definitions and references, when reading the code, you should try to jump to its definitions and references to understand how the corresponding interfaces are implemented and used.
 
