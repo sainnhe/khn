@@ -7,6 +7,61 @@
 					"line": 0,
 					"column": 0,
 					"label": "ch1: README"
+				},
+				{
+					"line": 3,
+					"column": 0,
+					"label": "asd"
+				}
+			]
+		},
+		{
+			"path": "sys/amd64/conf/GENERIC",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 0,
+					"label": "ch1: x86_64 conf"
+				}
+			]
+		},
+		{
+			"path": "sys/arm64/conf/GENERIC",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 0,
+					"label": "ch1: arm64 conf"
+				}
+			]
+		},
+		{
+			"path": "sys/amd64/amd64/locore.S",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 0,
+					"label": "ch1: entry point x86_64"
+				}
+			]
+		},
+		{
+			"path": "sys/kern/init_main.c",
+			"bookmarks": [
+				{
+					"line": 259,
+					"column": 0,
+					"label": "ch1: mi_startup()"
+				}
+			]
+		},
+		{
+			"path": "sys/sys/systm.h",
+			"bookmarks": [
+				{
+					"line": 222,
+					"column": 0,
+					"label": "ch1: printf()"
 				}
 			]
 		}
