@@ -10,15 +10,15 @@ sidebar:
 
 In this section, we will discuss how to setup a development environment using Vim or VSCode, both need to configure a language server and install a bookmark plug-in.
 
-{{< callout type="warning" >}}
-If you are using VSCode in a host machine and runs a Linux distro or FreeBSD in a VM or a container, you may need to set up [VSCode Remote Development Suite](https://code.visualstudio.com/docs/remote/remote-overview) to allow VSCode to access the development environment via SSH.
+> [!IMPORTANT]
+> If you are using VSCode in a host machine and runs a Linux distro or FreeBSD in a VM or a container, you may need to set up [VSCode Remote Development Suite](https://code.visualstudio.com/docs/remote/remote-overview) to allow VSCode to access the development environment via SSH.
+>
+> Since VSCode's Remote SSH Extension doesn't officially support FreeBSD, it requires some extra tricks to get it working. You can refer to [this gist](https://gist.github.com/mateuszkwiatkowski/ce486d692b4cb18afc2c8c68dcfe8602) to do this.
 
-Since VSCode's Remote SSH Extension doesn't officially support FreeBSD, it requires some extra tricks to get it working. You can refer to [this gist](https://gist.github.com/mateuszkwiatkowski/ce486d692b4cb18afc2c8c68dcfe8602) to do this.
-{{< /callout >}}
-
-{{< callout type="info" >}}
-If you have trouble setting up Vim or VSCode Remote Development Suite, consider using [Helix](https://helix-editor.com/). This is a full-featured, batteries-included TUI code editor, and you can install it via a single command on most of the Linux distros and FreeBSD. Once you've installed and configured a language server, you no longer need to spend any effort configuring Helix. It just works.
-{{< /callout >}}
+> [!TIP]
+> If you have trouble setting up Vim or VSCode Remote Development Suite, consider using [Helix](https://helix-editor.com/). This is a full-featured, batteries-included TUI code editor, and you can install it via a single command on most of the Linux distros and FreeBSD.
+>
+> Once you've installed and configured a language server, you no longer need to spend any effort configuring Helix. It just works.
 
 ## Language Server
 
@@ -32,6 +32,10 @@ Both of them will read a file in the root of a project named `compile_commands.j
 Take clangd for example, there are 3 steps to get it working:
 
 1. Install clangd on your machine: [Installing clangd](https://clangd.llvm.org/installation#installing-clangd)
+
+> [!NOTE]
+> The package contains `clangd` binary in FreeBSD 14.2.0 is `llvm19`, and you may need to update `$PATH` like this to use it: `export PATH="/usr/local/llvm19/bin:$PATH"`.
+
 2. Install code editor plug-in: [Editor plugins](https://clangd.llvm.org/installation#editor-plugins)
 3. Configure clangd to use the following arguments:
 

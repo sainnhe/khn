@@ -44,9 +44,8 @@ $ git checkout v6.12
 
 #### Build the Kernel
 
-{{< callout type="info" >}}
-You may need to install some packages to build the kernel. If you are using Arch Linux and some commands are missing, you can use `pacman -F` to search for corresponding package that contains the given binary. For users of other Linux distros, you can find the package name of a missing command in [command-not-found.com](https://command-not-found.com/).
-{{< /callout >}}
+> [!NOTE]
+> You may need to install some packages to build the kernel. If you are using Arch Linux and some commands are missing, you can use `pacman -F` to search for corresponding package that contains the given binary. For users of other Linux distros, you can find the package name of a missing command in [command-not-found.com](https://command-not-found.com/).
 
 First, we need to generate kernel configuration. The kernel configuration determines which features and drivers are included in the final kernel image. Type the following command to see all available configuration targets:
 
