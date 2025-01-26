@@ -52,7 +52,7 @@ This book assumes you:
 - Understand the basics of operating systems and networking and know how to perform UNIX system programming. I'd recommend[《The Linux Programming Interface》](https://man7.org/tlpi/)for both learning and reference.
 - Be familiar to UNIX shell commands.[《Harley Hahn's Guide to Unix and Linux》](https://www.harley.com/unix-book/book/chapters/home.html)is a good guide if you haven't learned it systematically.
 - Have a working Linux environment, whether it is a virtual machine, dual system, [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) (Windows Subsystem for Linux), cloud server or a docker container. If you are using macOS, you can use [OrbStack](https://orbstack.dev/) or [Lima](https://github.com/lima-vm/lima) as an alternative to WSL.
-- Have a working [FreeBSD 14.2.0](https://www.freebsd.org/where/) virtual machine, and a backup copy of this VM. We'll directly build and install the FreeBSD kernel in a VM, so make sure you have a backup of it.
+- Have a working [FreeBSD 14.2.0](https://www.freebsd.org/where/) virtual machine, and a backup copy of this VM. We'll directly build and install the FreeBSD kernel in a VM, so make sure you have a backup of it. You don't necessarily need to set up a desktop environment, instead you can simply set up a sshd service and log in to this VM with ssh.
 
 In this book, I'll use Arch Linux (x86\_64) as development environment. All the operations mentioned in this article are guaranteed to be reproducible on Arch Linux. Note that this does not include Arch Linux derivatives such as Manjaro and Arch Linux Arm. If you encounter any problems in the process of reproducing, please feel free to discuss in the comment area.
 
