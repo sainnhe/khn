@@ -11,7 +11,7 @@ sidebar:
 In this section, we will discuss how to setup a development environment using Vim or VSCode, both need to configure a language server and install a bookmark plug-in.
 
 > [!IMPORTANT]
-> If you are using VSCode in a host machine and runs a Linux distro or FreeBSD in a VM or a container, you may need to set up [VSCode Remote Development Suite](https://code.visualstudio.com/docs/remote/remote-overview) to allow VSCode to access the development environment via SSH.
+> If you are using VSCode in a host machine and running a Linux distro or FreeBSD in a VM or a container, you may need to set up [VSCode Remote Development Suite](https://code.visualstudio.com/docs/remote/remote-overview) to allow VSCode to access the development environment via SSH.
 >
 > Since VSCode's Remote SSH Extension doesn't officially support FreeBSD, it requires some extra tricks to get it working. You can refer to [this gist](https://gist.github.com/mateuszkwiatkowski/ce486d692b4cb18afc2c8c68dcfe8602) to do this.
 
@@ -73,7 +73,7 @@ This book relies on editors' bookmark plug-in to mark mentioned code, so you nee
 
   Install [MattesGroeger/vim-bookmarks](https://github.com/MattesGroeger/vim-bookmarks) and add `let g:bookmark_save_per_working_dir = 1` to your vimrc, so bookmarks will be stored in a file named `.vim-bookmarks` in the current working directory.
 
-  Then you can download the bookmark files used by this book, and put them in the project root, which is the source code of the kernels that we'll obtain later. Reopen your code editor, and you can see the bookmarks.
+  Then you can download the bookmark file and put it in the project root as `.vim-bookmark`, where the project is the source code of the kernels that we'll obtain later. Reopen your code editor, and you can see the bookmarks.
 
   The download URLs are listed below:
 
@@ -88,7 +88,7 @@ This book relies on editors' bookmark plug-in to mark mentioned code, so you nee
 
   Install [alefragnani.Bookmarks](https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks) and add `"bookmarks.saveBookmarksInProject": true` to your settings.json, so bookmarks will be stored in a file named `.vscode/bookmarks.json` in the current working directory.
 
-  Then you can download the bookmark files used by this book, and put them in the project root, which is the source code of the kernels that we'll obtain later. Reopen your code editor, and you can see the bookmarks.
+  Then you can download the bookmark file and put it in the project root as `.vscode/bookmarks.json`, where the project is the source code of the kernels that we'll obtain later. Reopen your code editor, and you can see the bookmarks.
 
   The download URLs are listed below:
 
