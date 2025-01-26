@@ -9,7 +9,7 @@ cascade:
 
 ## Introduction
 
-Learning kernels is hard, some even said that you shouldn't consider touching this area if you don't have experience of a decade of programming.
+Learning the operating system kernel is hard, some even said that you shouldn't consider touching this area if you don't have experience of a decade of programming.
 
 I don't think so. Programming experience should not be a barrier that prevents kernel enthusiasts from exploring this area, because developers will always learn and improve themselves in the process of doing projects and solving problems. And I found that the fastest way to improve myself is to read and hack the source code of the top open source projects.
 
