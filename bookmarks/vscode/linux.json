@@ -1,0 +1,79 @@
+{
+	"files": [
+		{
+			"path": "arch/x86/kernel/head_64.S",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 0,
+					"label": "ch1: entry point x86_64"
+				}
+			]
+		},
+		{
+			"path": "arch/arm64/kernel/head.S",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 0,
+					"label": "ch1: entry point arm64"
+				}
+			]
+		},
+		{
+			"path": "README",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 0,
+					"label": "ch1: README"
+				}
+			]
+		},
+		{
+			"path": "init/main.c",
+			"bookmarks": [
+				{
+					"line": 902,
+					"column": 0,
+					"label": "ch1: start_kernel()"
+				}
+			]
+		},
+		{
+			"path": "include/linux/printk.h",
+			"bookmarks": [
+				{
+					"line": 489,
+					"column": 0,
+					"label": "ch1: printk()"
+				},
+				{
+					"line": 561,
+					"column": 0,
+					"label": "ch1: pr_info()"
+				}
+			]
+		},
+		{
+			"path": "include/linux/string.h",
+			"bookmarks": [
+				{
+					"line": 111,
+					"column": 0,
+					"label": "ch1: strscpy()"
+				}
+			]
+		},
+		{
+			"path": "include/linux/kern_levels.h",
+			"bookmarks": [
+				{
+					"line": 13,
+					"column": 0,
+					"label": "ch1: KERN_INFO"
+				}
+			]
+		}
+	]
+}

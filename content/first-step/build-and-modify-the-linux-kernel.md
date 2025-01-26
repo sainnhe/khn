@@ -257,13 +257,13 @@ Let's try to install vim in your virtual machine:
 
 Now there is only one last thing left, which is to modify at least one line of code and see the effect of the modification. In this section, we'll modify the Linux kernel and let it print a "Hello world!" string when the kernel starts.
 
-We first need to find out the entry point of the Linux kernel. When we write a C program, we use `main()` function as the entry point. In the Linux kernel however, there is no `main()` function, instead the kernel execution starts with architecture-specific assembly code. For x86\_64, it's `arch/x86/kernel/head_64.S`, and for arm64, it's `arch/arm64/kernel/head.S`.
+We first need to find out the entry point of the Linux kernel. When we write a C program, we use `main()` function as the entry point. In the Linux kernel however, there is no `main()` function, instead the kernel execution starts with architecture-specific assembly code. For x86\_64, it's `arch/x86/kernel/head_64.S` [{{< icon "bookmark" >}} [linux] ch1: entry point x86\_64](https://github.com/torvalds/linux/blob/v6.12/arch/x86/kernel/head_64.S#L1), and for arm64, it's `arch/arm64/kernel/head.S` [{{< icon "bookmark" >}} [linux] ch1: entry point arm64](https://github.com/torvalds/linux/blob/v6.12/arch/arm64/kernel/head.S#L1).
 
-This assembly code handles very low-level tasks. It first sets up the CPU, then initializes a minimal stack, and prepares the environment for C code to run. Once the assembly code completes its job, it jumps to the `start_kernel()` function in `init/main.c`. This is where the "generic" kernel initialization begins in C.
+This assembly code handles very low-level tasks. It first sets up the CPU, then initializes a minimal stack, and prepares the environment for C code to run. Once the assembly code completes its job, it jumps to the `start_kernel()` function in `init/main.c` [{{< icon "bookmark" >}} [linux] ch1: start_kernel()](https://github.com/torvalds/linux/blob/v6.12/init/main.c#L903). This is where the "generic" kernel initialization begins in C.
 
 Why no `main()` function in the Linux kernel? Remember that the kernel is not a userspace program and does not rely on the standard C runtime (which typically provides `main()`). This also means *you cannot use standard libraries* in the kernel source code, like `printf()` in `<stdio.h>` and `strcpy()` in `<string.h>`.
 
-But don't be afraid, although we cannot use standard libraries, the kernel implements a set of libraries that can be used to replace most of the functions in standard libraries. For example, for `printf()` we have `printk()` defined in `<linux/printk.h>`, and for `strcpy()` we have `strscpy()` defined in `<linux/string.h>`.
+But don't be afraid, although we cannot use standard libraries, the kernel implements a set of libraries that can be used to replace most of the functions in standard libraries. For example, for `printf()` we have `printk()` defined in `<linux/printk.h>` [{{< icon "bookmark" >}} [linux] ch1: printk()](https://github.com/torvalds/linux/blob/v6.12/include/linux/printk.h#L490), and for `strcpy()` we have `strscpy()` defined in `<linux/string.h>` [{{< icon "bookmark" >}} [linux] ch1: strscpy()](https://github.com/torvalds/linux/blob/v6.12/include/linux/string.h#L112).
 
 We can use `printk()` like this:
 
@@ -271,9 +271,9 @@ We can use `printk()` like this:
 printk(KERN_INFO "Hello world! Value: %d\n", 42);
 ```
 
-Where `KERN_INFO` is the log level defined in `<linux/kern_levels.h>`.
+Where `KERN_INFO` is the log level defined in `<linux/kern_levels.h>` [{{< icon "bookmark" >}} [linux] ch1: KERN_INFO](https://github.com/torvalds/linux/blob/v6.12/include/linux/kern_levels.h#L14).
 
-`<linux/printk.h>` also defines some simple wrappers for `printk()`, for example the above code is equivalent to `pr_info("Hello world! Value: %d\n", 42)`. `pr_info()` is a macro that wraps `printk(KERN_INFO ...)`.
+`<linux/printk.h>` also defines some simple wrappers for `printk()`, for example the above code is equivalent to `pr_info("Hello world! Value: %d\n", 42)`. `pr_info()` is a macro that wraps `printk(KERN_INFO ...)` [{{< icon "bookmark" >}} [linux] ch1: pr_info()](https://github.com/torvalds/linux/blob/v6.12/include/linux/printk.h#L562).
 
 Now let's come back to our question. How to print a "Hello world!" string when the kernel starts? Through the above analysis we know that we can modify the `start_kernel()` function in `init/main.c` and add a line that uses `printk()` or its wrappers to print a string.
 
