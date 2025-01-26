@@ -94,7 +94,7 @@ The stuff similar to Linux's `arch/x86/kernel/head_64.S` [{{< icon "bookmark" >}
 the stuff similar to Linux's `start_kernel()` [{{< icon "bookmark" >}} [linux] ch1: start_kernel()](https://github.com/torvalds/linux/blob/v6.12/init/main.c#L903) is `mi_startup()` defined in `sys/kern/init_main.c` [{{< icon "bookmark" >}} [freebsd] ch1: mi_startup()](https://github.com/freebsd/freebsd-src/blob/release/14.2.0/sys/kern/init_main.c#L260),
 and the stuff similar to Linux's `printk()` [{{< icon "bookmark" >}} [linux] ch1: printk()](https://github.com/torvalds/linux/blob/v6.12/include/linux/printk.h#L490) is `printf()` defined in `sys/sys/systm.h` [{{< icon "bookmark" >}} [freebsd] ch1: printf()](https://github.com/freebsd/freebsd-src/blob/release/14.2.0/sys/sys/systm.h#L223).
 
-So all we need to do is add a `printf()` to `mi_startup()` that prints "Hello world!" string. The patch is as follows:
+So all we need to do is adding a `printf()` to `mi_startup()` that prints "Hello world!" string. The patch is as follows:
 
 ```diff {filename="patch.diff"}
 diff --git a/sys/kern/init_main.c b/sys/kern/init_main.c
