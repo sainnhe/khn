@@ -33,7 +33,7 @@ Take clangd for example, there are 3 steps to get it working:
 
 1. Install clangd on your machine: [Installing clangd](https://clangd.llvm.org/installation#installing-clangd)
 2. Install code editor plug-in: [Editor plugins](https://clangd.llvm.org/installation#editor-plugins)
-3. Configure the clangd plug-in to use the following arguments:
+3. Configure clangd to use the following arguments:
 
 ```sh
 clangd \
@@ -45,9 +45,9 @@ clangd \
 
 `--header-insertion=never` tells clangd not to insert headers on completion. We need this because clangd will falsely insert unnecessary headers.
 
-The instructions on how to configure editors to use these 2 arguments can be found in [Editor plugins](https://clangd.llvm.org/installation#editor-plugins).
+You can apply these arguments via your [editor's settings](https://clangd.llvm.org/installation#editor-plugins) or a [configuration file](https://clangd.llvm.org/config#files).
 
-Additionally, execute `clangd --help` to have a look at all available arguments of clangd. Personally, I use the following arguments:
+To list all available arguments of clangd, execute `clang --help`. Personally, I use the following arguments:
 
 ```sh
 clangd \
@@ -97,3 +97,8 @@ This book relies on editors' bookmark plug-in to mark mentioned code, so you nee
 
 {{< /tabs >}}
 
+## More Resources
+
+- [clangd doc](https://clangd.llvm.org/)
+- [ccls wiki](https://github.com/MaskRay/ccls/wiki)
+- [Use Language Servers for Development in the FreeBSD Src Tree](https://docs.freebsd.org/en/articles/freebsd-src-lsp/)
