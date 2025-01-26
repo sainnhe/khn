@@ -13,7 +13,7 @@ Compared to the Linux kernel, it's relatively easy to build and run the FreeBSD 
 
 ### Get the Source Code
 
-Most of the time the source code is installed along with the operating system, in `/usr/src`. If this directory doesn't exist, you can obtain the source code like this:
+Typically, the source code is installed along with the operating system in `/usr/src`. If this directory doesn't exist, you can obtain the source code like this:
 
 ```
 # git clone https://git.freebsd.org/src.git /usr/src
@@ -21,7 +21,7 @@ Most of the time the source code is installed along with the operating system, i
 # git checkout release/14.2.0
 ```
 
-Even if you have this directory, it's still recommended to clone the repository and move `.git` to `/usr/src` so we can perform version control conveniently.
+Nevertheless, if you have this directory, it's still recommended to clone the repository and move `.git` to `/usr/src` so we can perform version control conveniently.
 
 ```
 # git clone https://git.freebsd.org/src.git ~/freebsd
