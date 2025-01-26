@@ -16,6 +16,10 @@ The following guide assumes the host is a working Linux operating system. If you
 Since VSCode's Remote SSH Extension doesn't officially support FreeBSD, you need some extra tricks to get it working. You can refer to [this gist](https://gist.github.com/mateuszkwiatkowski/ce486d692b4cb18afc2c8c68dcfe8602) to do this.
 {{< /callout >}}
 
+{{< callout type="info" >}}
+If you have trouble setting up Vim or configuring VSCode Remote Development Suite, consider using [Helix](https://helix-editor.com/). This is a full-featured, batteries-included TUI code editor, and you can install it via a single command on most of the Linux distros and FreeBSD. Once you've installed and configured a language server, you no longer need to spend any effort configuring Helix. It just works.
+{{< /callout >}}
+
 ## Language Server
 
 A language server is a program that provides language-specific features like code completion, linting, and syntax highlighting to development environments through the Language Server Protocol. There are 2 actively maintained language servers of C/C++:
